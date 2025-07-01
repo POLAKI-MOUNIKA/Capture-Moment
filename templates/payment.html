@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Options</title>
+  <style>
+    body {
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    button {
+      margin: 15px;
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #219150;
+    }
+    pre {
+      text-align: left;
+      background: #eef;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Payment Options</h2>
+    <p>Booking Details:</p>
+    <pre>{{ booking }}</pre>
+    <button type="button">UPI</button>
+    <button type="button">Credit Card</button>
+    <button type="button">Cash on Event</button>
+  </div>
+</body>
+</html>
+

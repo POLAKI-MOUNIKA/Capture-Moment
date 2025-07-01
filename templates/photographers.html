@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photographers</title>
+  <style>
+    body {
+      background: url("/static/images/photo.jpg")no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+       background: rgba(0, 0, 0, 0.8); 
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px); 
+  -webkit-backdrop-filter: blur(5px);
+  color: #ffffff;
+    }
+    h2 {
+      margin-bottom: 10px;
+      color: #232425;
+      font-size: 36px;
+    }
+    p {
+      color: #fcfcfc;
+    }
+  </style>
+</head>
+<body>
+  <h2>Available Photographers</h2>
+  {% for p in photographers %}
+    <div class="card">
+      <h3>{{ p.name }}</h3>
+      <p><strong>ID:</strong> {{ p.id }}</p>
+      <p><strong>Skills:</strong> {{ p.skills | join(', ') }}</p>
+      <p><strong>Availability:</strong> {{ availability_data[p.id] }}</p>
+      <img src="{{ url_for('static', filename='images/' + p.image) }}" width="200">
+    </div>
+  {% endfor %}
+  <a href="/" style="display: inline-block; margin-top: 20px;">← Back to Home</a>
+</body>
+</html>

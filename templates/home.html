@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Capture Moments</title>
+  <style>
+    body {
+      background: url("/static/images/bgpg1.jpeg") center/cover no-repeat;
+      margin: 0;
+      padding: 100px 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .header-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right:50px;
+    }
+
+    .header-buttons a {
+      background: white;
+      color: black;
+      padding: 10px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .header-buttons a:hover {
+      background-color: #00b7ff;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #090700;
+      text-shadow: 1px 1px 4px rgb(252, 251, 251);
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+      color: #443e3e;
+      text-shadow: 1px 1px 3px rgb(244, 240, 240);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .button {
+      background: white;
+      color: black;
+      padding: 15px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: rgb(0,183,255);
+    }
+
+    .events {
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      margin: 0 auto 50px;
+    }
+
+    .events h2 {
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: white;
+    }
+
+    .event-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .event-item-link {
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease;
+    }
+
+    .event-item-link:hover {
+      transform: scale(1.05);
+    }
+
+    .event-item {
+      width: 300px;
+      text-align: center;
+    }
+
+    .event-item img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .event-item span {
+      margin-top: 10px;
+      display: block;
+      font-size: 1.1em;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Capture Moments</div>
+    <div class="header-buttons">
+      {% if session.user_id %}
+        <a href="/my_space">My Space</a>
+        <a href="/logout">Logout</a>
+      {% else %}
+        <a href="/login">Sign In</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <h1>Capture Moments</h1>
+  <p>Your go‑to platform for booking professional photographers!</p>
+
+  <div class="buttons">
+    <a href="/book" class="button">Book a Photographer</a>
+    <a href="/show-photographers" class="button">View Photographers</a>
+    <a href="/events" class="button">Choose Event</a>
+  </div>
+
+  <div class="events">
+    <h2>Available Photographers</h2>
+    <div class="event-grid">
+      {% for ev in events %}
+        <a href="/events/{{ ev }}" class="event-item-link">
+          <div class="event-item">
+            <img src="/static/images/{{ ev.lower().replace(' ', '') }}.jpg"
+                 alt="{{ ev }}"
+                 onerror="this.src='/static/images/default.jpg';">
+            <span>{{ ev }}</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
+

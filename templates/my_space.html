@@ -1,0 +1,85 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <title>My Space</title> <style> body { font-family: Arial, sans-serif; background: url("/static/images/user_bg.jpg") no-repeat center center fixed; background-size: cover; color: #fff; margin: 0; padding: 40px; text-align: center; }
+css
+Copy
+Edit
+.container {
+  background: rgba(0,0,0,0.7);
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: black;
+}
+
+.section {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.section h3 {
+  color: blueviolet;
+  margin-bottom: 10px;
+}
+
+.info, .booking {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 8px;
+}
+
+.info p, .booking p {
+  margin: 8px 0;
+}
+p{
+    color: black;
+}
+h3{
+    color: black;
+}
+a.button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+a.button:hover {
+  background: #2980b9;
+}
+</style> </head> <body> <div class="container"> <h2>Welcome to Your Space</h2>
+<div class="section">
+  <h3>👤 User Info</h3>
+  <div class="info">
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>User ID:</strong> {{ session.get('user_id') }}</p>
+  </div>
+</div>
+
+{% if booking %}
+<div class="section">
+  <h3>📅 Booking Details</h3>
+  <div class="booking">
+    <p><strong>Photographer ID:</strong> {{ booking.photographer_id }}</p>
+    <p><strong>Event Type:</strong> {{ booking.event_type }}</p>
+    <p><strong>Date:</strong> {{ booking.date }}</p>
+    <p><strong>Payment Method:</strong> {{ booking.payment_method }}</p>
+  </div>
+</div>
+{% else %}
+<div class="section">
+  <p>No bookings yet.</p>
+</div>
+{% endif %}
+
+<a class="button" href="/">← Back to Home</a>
+</div> </body> </html>

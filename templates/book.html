@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book a Photographer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url("/static/images/book_bg.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h2 {
+      color: rgb(24, 1, 1);
+      text-shadow: 1px 1px 2px rgb(247, 236, 236);
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Book a Photographer</h2>
+    <form method="POST" action="/book">
+      <input type="text" name="photographer_id" placeholder="Photographer ID" required>
+      <input type="text" name="user_id" placeholder="Your User ID" required>
+      <input type="date" name="date" required>
+
+      <select name="event_type" required>
+        <option value="">Select Event</option>
+        {% for ev in events %}
+          <option value="{{ ev }}">{{ ev }}</option>
+        {% endfor %}
+      </select>
+
+      <select name="payment_method" required>
+        <option value="">Select Payment Method</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="debit_card">Debit Card</option>
+        <option value="upi">UPI</option>
+        <option value="net_banking">Net Banking</option>
+        <option value="cash">Cash on Event</option>
+      </select>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ style }} - {{ event }} Samples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url("/static/images/{{ event.lower().replace(' ', '') }}.jpg") center/cover no-repeat;
+      color: white;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h2>{{ style }} Photography Samples - {{ event }}</h2>
+
+    {% if samples %}
+      <div class="gallery">
+  {% for sample in samples %}
+    <img src="{{ url_for('static', filename=sample) }}" alt="Sample Photo">
+  {% endfor %}
+</div>
+    {% else %}
+      <p>No samples available for this style.</p>
+    {% endif %}
+
+    <a href="/events/{{ event }}" class="back-link">← Back to {{ event }} photographers</a>
+  </div>
+</body>
+</html>
