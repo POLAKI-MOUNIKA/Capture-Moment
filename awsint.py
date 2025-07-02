@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-dynamodb = boto3.resource('dynamodb', region_name = "region-name")
+dynamodb = boto3.resource('dynamodb', region_name = "us-east-1")
 photographers_table = dynamodb.Table('dynamodb_table_name')
 
 
